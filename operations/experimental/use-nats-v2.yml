@@ -1,48 +1,32 @@
+- type: remove
+  path: /instance_groups/name=nats/jobs/name=nats-tls?
+- type: remove
+  path: /instance_groups/name=nats/jobs/name=nats?
 - type: replace
-  path: /instance_groups/name=singleton-blobstore/jobs/name=route_registrar/consumes?/nats-tls
+  path: /instance_groups/name=nats/jobs/name=nats-v2-tls?
   value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=api/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=scheduler/jobs/name=service-discovery-controller/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=router/jobs/name=gorouter/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=log-cache/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=diego-cell/jobs/name=route_emitter/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=log-api/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=database/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=uaa/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=api/jobs/name=route_registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /instance_groups/name=nats/jobs/name=nats-tls/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
-- type: replace
-  path: /addons/name=metrics-discovery-registrar/jobs/name=metrics-discovery-registrar/consumes?/nats-tls
-  value:
-    from: nats-v2-tls
+    name: nats-v2-tls
+    properties:
+      nats:
+        client:
+          tls:
+            certificate: ((nats_client_cert.certificate))
+            private_key: ((nats_client_cert.private_key))
+        external:
+          tls:
+            ca: ((nats_client_cert.ca))
+            certificate: ((nats_server_cert.certificate))
+            private_key: ((nats_server_cert.private_key))
+        hostname: nats.service.cf.internal
+        internal:
+          tls:
+            ca: ((nats_internal_cert.ca))
+            certificate: ((nats_internal_cert.certificate))
+            enabled: true
+            private_key: ((nats_internal_cert.private_key))
+        password: ((nats_password))
+        user: nats
+    consumes:
+      nats-v2-tls:
+        from: nats-v2-tls
+    release: nats
