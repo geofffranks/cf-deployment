@@ -25,6 +25,9 @@
         nats-v2-tls:
           as: nats-v2-tls
           shared: true
+      consumes:
+        nats-v2-tls:
+          as: nats-v2-tls
       release: nats-v2
 - type: replace
   path: /releases/name=nats-v2?
