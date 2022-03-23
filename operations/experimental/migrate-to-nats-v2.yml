@@ -1,8 +1,11 @@
 - type: replace
   path: /instance_groups/name=nats/jobs/name=nats-v2-tls?
   value:
+    name: nats-v2-tls
     properties:
       nats:
+        port: 4226
+        cluster_port: 4227
         client:
           tls:
             certificate: ((nats_client_cert.certificate))
@@ -21,17 +24,10 @@
             private_key: ((nats_internal_cert.private_key))
         password: ((nats_password))
         user: nats
-      provides:
-        nats-v2-tls:
-          as: nats-v2-tls
-          shared: true
-      consumes:
-        nats-v2-tls:
-          as: nats-v2-tls
-      release: nats-v2
-- type: replace
-  path: /releases/name=nats-v2?
-  value: latest
+    consumes:
+      nats-v2-tls:
+        from: nats-v2-tls
+    release: nats
 
 - type: replace
   path: /instance_groups/name=nats/jobs/name=nats-tls/provides?/nats-tls
