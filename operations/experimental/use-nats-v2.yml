@@ -1,0 +1,48 @@
+- type: replace
+  path: /instance_groups/name=singleton-blobstore/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=api/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=scheduler/jobs/name=service-discovery-controller/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=router/jobs/name=gorouter/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=log-cache/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=route_emitter/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=log-api/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=database/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=uaa/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=api/jobs/name=route_registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /instance_groups/name=nats/jobs/name=nats-tls/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
+- type: replace
+  path: /addons/name=metrics-discovery-registrar/jobs/name=metrics-discovery-registrar/consumes?/nats-tls
+  value:
+    from: nats-v2-tls
